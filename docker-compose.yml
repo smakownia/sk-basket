@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  smakownia.basket.api:
+    image: ${DOCKER_REGISTRY-}smakowniabasketapi
+    build:
+      context: .
+      dockerfile: src/Smakownia.Basket.Api/Dockerfile
