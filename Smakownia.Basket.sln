@@ -5,13 +5,13 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D2F378A1-74E2-4957-AB8E-8F692C63EE51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smakownia.Basket.Api", "src\Smakownia.Basket.Api\Smakownia.Basket.Api.csproj", "{C5CF9DCB-86DB-49A7-AE07-4191EBE70CD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smakownia.Basket.Api", "src\Smakownia.Basket.Api\Smakownia.Basket.Api.csproj", "{C5CF9DCB-86DB-49A7-AE07-4191EBE70CD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smakownia.Basket.Domain", "src\Smakownia.Basket.Domain\Smakownia.Basket.Domain.csproj", "{4639B20D-39E8-4416-902F-C90BF5081C74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smakownia.Basket.Domain", "src\Smakownia.Basket.Domain\Smakownia.Basket.Domain.csproj", "{4639B20D-39E8-4416-902F-C90BF5081C74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smakownia.Basket.Application", "src\Smakownia.Basket.Application\Smakownia.Basket.Application.csproj", "{D970189B-DD6D-4177-9392-ABE3F7729AA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smakownia.Basket.Application", "src\Smakownia.Basket.Application\Smakownia.Basket.Application.csproj", "{D970189B-DD6D-4177-9392-ABE3F7729AA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smakownia.Basket.Infrastructure", "src\Smakownia.Basket.Infrastructure\Smakownia.Basket.Infrastructure.csproj", "{FB44C1FE-C6ED-417C-AC4F-0B32F8EF4FD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smakownia.Basket.Infrastructure", "src\Smakownia.Basket.Infrastructure\Smakownia.Basket.Infrastructure.csproj", "{FB44C1FE-C6ED-417C-AC4F-0B32F8EF4FD5}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E2C0D228-D8C4-4382-ACB7-240ABC92365C}"
 EndProject
