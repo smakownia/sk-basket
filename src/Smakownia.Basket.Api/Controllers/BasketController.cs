@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Smakownia.Basket.Application.Services;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Smakownia.Basket.Application.Commands.AddBasketItem;
+using Smakownia.Basket.Application.Commands.RemoveBasketItem;
+using Smakownia.Basket.Application.Commands.UpdateBasketItem;
+using Smakownia.Basket.Application.Queries.GetBasket;
 using Smakownia.Basket.Domain.Models;
 
 namespace Smakownia.Basket.Api.Controllers;
@@ -7,22 +11,35 @@ namespace Smakownia.Basket.Api.Controllers;
 [ApiController, Route("api/v1/basket")]
 public class BasketController : ControllerBase
 {
-    private readonly IBasketsService _basketsService;
+    private readonly ISender _sender;
 
-    public BasketController(IBasketsService basketsService)
+    public BasketController(ISender sender)
     {
-        _basketsService = basketsService;
+        _sender = sender;
     }
 
     [HttpGet]
     public async Task<ActionResult<BasketModel>> Get(CancellationToken token)
     {
-        return Ok(await _basketsService.GetAsync(token));
+        return Ok(await _sender.Send(new GetBasketQuery(), token));
     }
 
-    [HttpPost]
-    public async Task<ActionResult<BasketModel>> Set(BasketModel basket, CancellationToken token)
+    [HttpPost("items")]
+    public async Task<ActionResult<BasketModel>> AddItem([FromBody] AddBasketItemCommand command, CancellationToken token)
     {
-        return Ok(await _basketsService.SetAsync(basket, token));
+        return Ok(await _sender.Send(command, token));
+    }
+
+    [HttpPut("items/{id:guid}")]
+    public async Task<ActionResult<BasketModel>> UpdateItem([FromBody] UpdateBasketItemCommand command,
+                                                            CancellationToken token)
+    {
+        return Ok(await _sender.Send(command, token));
+    }
+
+    [HttpDelete("items/{id:guid}")]
+    public async Task<ActionResult<BasketModel>> RemoveItem([FromRoute] Guid id, CancellationToken token)
+    {
+        return Ok(await _sender.Send(new RemoveBasketItemCommand(id), token));
     }
 }

@@ -29,7 +29,8 @@ public class GlobalExceptionMiddleware
     {
         var statusCode = exception switch
         {
-            BasketIdCookieNullException => HttpStatusCode.BadRequest,
+            BasketIdEmptyException => HttpStatusCode.BadRequest,
+            BasketIdInvalidFormatException => HttpStatusCode.BadRequest,
             _ => HttpStatusCode.InternalServerError
         };
 

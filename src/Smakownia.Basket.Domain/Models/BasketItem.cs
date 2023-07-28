@@ -1,13 +1,34 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Smakownia.Basket.Domain.Snapshots;
 
 namespace Smakownia.Basket.Domain.Models;
 
-public record BasketItem
+public class BasketItem
 {
-    [Required]
-    public Guid ProductId { get; init; }
+    internal BasketItem(Guid id, int quantity)
+    {
+        Id = id;
+        Quantity = quantity;
+    }
 
-    [Required]
-    [Range(1, int.MaxValue)]
-    public int Quantity { get; init; }
+    public Guid Id { get; private set; }
+    public int Quantity { get; private set; }
+
+    internal void SetQuantity(int quantity)
+    {
+        Quantity = quantity;
+    }
+
+    internal void AddQuantity(int quantity)
+    {
+        Quantity += quantity;
+    }
+
+    public BasketItemSnapshot ToSnapshot()
+    {
+        return new()
+        {
+            Id = Id,
+            Quantity = Quantity
+        };
+    }
 }
