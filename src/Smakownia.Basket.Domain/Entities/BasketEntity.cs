@@ -1,12 +1,12 @@
 ﻿using Smakownia.Basket.Domain.Snapshots;
 
-namespace Smakownia.Basket.Domain.Models;
+namespace Smakownia.Basket.Domain.Entities;
 
-public class BasketModel
+public class BasketEntity
 {
     private readonly HashSet<BasketItem> _items;
 
-    public BasketModel(Guid id)
+    public BasketEntity(Guid id)
     {
         Id = id;
         _items = new();
@@ -14,11 +14,6 @@ public class BasketModel
 
     public Guid Id { get; private set; }
     public IReadOnlyCollection<BasketItem> Items => _items;
-
-    private BasketItem? GetItemById(Guid id)
-    {
-        return _items.Where(i => i.Id == id).FirstOrDefault();
-    }
 
     public void AddItem(Guid id, int quantity)
     {
@@ -51,9 +46,14 @@ public class BasketModel
         _items.Remove(item);
     }
 
-    public static BasketModel Restore(BasketModelSnapshot snapshot)
+    private BasketItem? GetItemById(Guid id)
     {
-        var basket = new BasketModel(snapshot.Id);
+        return _items.Where(i => i.Id == id).FirstOrDefault();
+    }
+
+    public static BasketEntity Restore(BasketEntitySnapshot snapshot)
+    {
+        var basket = new BasketEntity(snapshot.Id);
 
         foreach (var item in snapshot.Items)
         {
@@ -63,7 +63,7 @@ public class BasketModel
         return basket;
     }
 
-    public BasketModelSnapshot ToSnapshot()
+    public BasketEntitySnapshot ToSnapshot()
     {
         return new()
         {

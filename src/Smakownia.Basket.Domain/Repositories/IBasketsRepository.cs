@@ -1,9 +1,9 @@
-﻿using Smakownia.Basket.Domain.Models;
+﻿using Smakownia.Basket.Domain.Entities;
 
 namespace Smakownia.Basket.Domain.Repositories;
 
 public interface IBasketsRepository
 {
-    Task<BasketModel> GetAsync(Guid key, CancellationToken cancellationToken);
-    Task<BasketModel> SetAsync(BasketModel basket, CancellationToken cancellationToken);
+    Task<BasketEntity> GetAsync(Guid key, CancellationToken cancellationToken);
+    Task<BasketEntity> SetAsync(BasketEntity basket, CancellationToken cancellationToken);
 }

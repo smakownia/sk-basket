@@ -1,10 +1,10 @@
 ﻿using MediatR;
-using Smakownia.Basket.Domain.Models;
+using Smakownia.Basket.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace Smakownia.Basket.Application.Commands.UpdateBasketItem;
 
-public sealed record UpdateBasketItemCommand : IRequest<BasketModel>
+public sealed record UpdateBasketItemCommand : IRequest<BasketEntity>
 {
     public UpdateBasketItemCommand(Guid id, int quantity)
     {

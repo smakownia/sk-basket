@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Smakownia.Basket.Application.Services;
-using Smakownia.Basket.Domain.Models;
+using Smakownia.Basket.Domain.Entities;
 using Smakownia.Basket.Domain.Repositories;
 
 namespace Smakownia.Basket.Application.Commands.AddBasketItem;
 
-public class AddBasketItemCommandHandler : IRequestHandler<AddBasketItemCommand, BasketModel>
+public class AddBasketItemCommandHandler : IRequestHandler<AddBasketItemCommand, BasketEntity>
 {
     private readonly IBasketIdentityService _basketIdentityService;
     private readonly IBasketsRepository _basketsRepository;
@@ -17,10 +17,9 @@ public class AddBasketItemCommandHandler : IRequestHandler<AddBasketItemCommand,
         _basketsRepository = basketsRepository;
     }
 
-    public async Task<BasketModel> Handle(AddBasketItemCommand request, CancellationToken cancellationToken)
+    public async Task<BasketEntity> Handle(AddBasketItemCommand request, CancellationToken cancellationToken)
     {
         var basketId = _basketIdentityService.GetId();
-
         var basket = await _basketsRepository.GetAsync(basketId, cancellationToken);
 
         basket.AddItem(request.Id, request.Quantity);

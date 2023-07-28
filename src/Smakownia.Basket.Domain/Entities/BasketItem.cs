@@ -1,6 +1,6 @@
 ﻿using Smakownia.Basket.Domain.Snapshots;
 
-namespace Smakownia.Basket.Domain.Models;
+namespace Smakownia.Basket.Domain.Entities;
 
 public class BasketItem
 {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
-using Smakownia.Basket.Domain.Models;
+using Smakownia.Basket.Domain.Entities;
 using Smakownia.Basket.Domain.Repositories;
 using Smakownia.Basket.Domain.Snapshots;
 using System.Text.Json;
@@ -15,7 +15,7 @@ public class BasketsRepository : IBasketsRepository
         _distributedCache = distributedCache;
     }
 
-    public async Task<BasketModel> GetAsync(Guid key, CancellationToken cancellationToken)
+    public async Task<BasketEntity> GetAsync(Guid key, CancellationToken cancellationToken)
     {
         var basketJson = await _distributedCache.GetStringAsync(key.ToString(), cancellationToken);
 
@@ -24,17 +24,17 @@ public class BasketsRepository : IBasketsRepository
             return await SetAsync(new(key), cancellationToken);
         }
 
-        var basketSnapshot = JsonSerializer.Deserialize<BasketModelSnapshot>(basketJson);
+        var basketSnapshot = JsonSerializer.Deserialize<BasketEntitySnapshot>(basketJson);
 
         if (basketSnapshot is null)
         {
             return await SetAsync(new(key), cancellationToken);
         }
 
-        return BasketModel.Restore(basketSnapshot);
+        return BasketEntity.Restore(basketSnapshot);
     }
 
-    public async Task<BasketModel> SetAsync(BasketModel basket, CancellationToken cancellationToken)
+    public async Task<BasketEntity> SetAsync(BasketEntity basket, CancellationToken cancellationToken)
     {
         var basketJson = JsonSerializer.Serialize(basket.ToSnapshot());
 

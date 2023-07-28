@@ -1,6 +1,6 @@
 ﻿namespace Smakownia.Basket.Domain.Snapshots;
 
-public class BasketModelSnapshot
+public class BasketEntitySnapshot
 {
     public Guid Id { get; set; }
     public IEnumerable<BasketItemSnapshot> Items { get; set; }
