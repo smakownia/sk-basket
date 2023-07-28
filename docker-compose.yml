@@ -10,7 +10,12 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
     ports:
-      - "80"
+      - 8001:80
+    networks:
+      - default
+      - smakownia
+    depends_on:
+      - redis
   redis:
     image: redis:7-alpine
     command: /bin/sh -c 'redis-server --appendonly yes --requirepass $${REDIS_PASSWORD} --maxmemory 50mb --maxmemory-policy allkeys-lru'
@@ -18,3 +23,7 @@ services:
       - 6379:6379
     environment:
       - REDIS_PASSWORD=super-secret-password
+
+networks:
+  smakownia:
+    name: smakownia
