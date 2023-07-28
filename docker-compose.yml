@@ -6,3 +6,15 @@ services:
     build:
       context: .
       dockerfile: src/Smakownia.Basket.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+  redis:
+    image: redis:7-alpine
+    command: /bin/sh -c 'redis-server --appendonly yes --requirepass $${REDIS_PASSWORD} --maxmemory 50mb --maxmemory-policy allkeys-lru'
+    ports:
+      - 6379:6379
+    environment:
+      - REDIS_PASSWORD=super-secret-password
