@@ -19,18 +19,24 @@ public class BasketController : ControllerBase
     }
 
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<BasketEntity>> Get(CancellationToken token)
     {
         return Ok(await _sender.Send(new GetBasketQuery(), token));
     }
 
     [HttpPost("items")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<BasketEntity>> AddItem([FromBody] AddBasketItemCommand command, CancellationToken token)
     {
         return Ok(await _sender.Send(command, token));
     }
 
     [HttpPut("items/{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<BasketEntity>> UpdateItem([FromBody] UpdateBasketItemCommand command,
                                                             CancellationToken token)
     {
@@ -38,6 +44,8 @@ public class BasketController : ControllerBase
     }
 
     [HttpDelete("items/{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<BasketEntity>> RemoveItem([FromRoute] Guid id, CancellationToken token)
     {
         return Ok(await _sender.Send(new RemoveBasketItemCommand(id), token));
