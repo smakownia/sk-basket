@@ -1,6 +1,8 @@
-﻿namespace Smakownia.Basket.Api.Exceptions;
+﻿using Smakownia.Basket.Domain.Exceptions;
 
-public class BasketIdInvalidFormatException : Exception
+namespace Smakownia.Basket.Api.Exceptions;
+
+public class BasketIdInvalidFormatException : BadRequestException
 {
     public BasketIdInvalidFormatException() : base("basketId is invalid") { }
 }
