@@ -1,6 +1,8 @@
-﻿namespace Smakownia.Basket.Api.Exceptions;
+﻿using Smakownia.Basket.Domain.Exceptions;
 
-public class BasketIdEmptyException : Exception
+namespace Smakownia.Basket.Api.Exceptions;
+
+public class BasketIdEmptyException : BadRequestException
 {
     public BasketIdEmptyException() : base("basketId is empty") { }
 }

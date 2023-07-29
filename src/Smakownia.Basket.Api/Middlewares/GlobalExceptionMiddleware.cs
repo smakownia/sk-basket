@@ -1,4 +1,4 @@
-﻿using Smakownia.Basket.Api.Exceptions;
+﻿using Smakownia.Basket.Domain.Exceptions;
 using System.Net;
 using System.Text.Json;
 
@@ -29,8 +29,8 @@ public class GlobalExceptionMiddleware
     {
         var statusCode = exception switch
         {
-            BasketIdEmptyException => HttpStatusCode.BadRequest,
-            BasketIdInvalidFormatException => HttpStatusCode.BadRequest,
+            BadRequestException => HttpStatusCode.BadRequest,
+            NotFoundException => HttpStatusCode.NotFound,
             _ => HttpStatusCode.InternalServerError
         };
 
