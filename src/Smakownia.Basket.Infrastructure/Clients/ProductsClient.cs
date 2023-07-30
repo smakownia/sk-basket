@@ -12,9 +12,9 @@ public class ProductsClient : IProductsClient
         _httpClient = httpClient;
     }
 
-    public async Task GetByIdAsync(Guid id)
+    public async Task GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        var response = await _httpClient.GetAsync($"/api/v1/products/{id}");
+        var response = await _httpClient.GetAsync($"/api/v1/products/{id}", cancellationToken);
 
         if (!response.IsSuccessStatusCode)
         {

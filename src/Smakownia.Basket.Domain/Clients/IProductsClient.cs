@@ -2,5 +2,5 @@
 
 public interface IProductsClient
 {
-    Task GetByIdAsync(Guid id);
+    Task GetByIdAsync(Guid id, CancellationToken cancellationToken);
 }
