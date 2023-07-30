@@ -1,5 +1,4 @@
-﻿using Smakownia.Basket.Api.Exceptions;
-using Smakownia.Basket.Application.Services;
+﻿using Smakownia.Basket.Application.Services;
 
 namespace Smakownia.Basket.Api.Services;
 
@@ -14,17 +13,15 @@ public class BasketIdentityService : IBasketIdentityService
 
     public Guid GetId()
     {
-        _httpContext.Request.Cookies.TryGetValue("basketId", out var basketIdString);
-
-        if (string.IsNullOrEmpty(basketIdString))
+        if (_httpContext.Request.Cookies.TryGetValue("basketId", out var basketIdString)
+            && Guid.TryParse(basketIdString, out var basketId))
         {
-            throw new BasketIdEmptyException();
+            return basketId;
         }
 
-        if(!Guid.TryParse(basketIdString, out var basketId))
-        {
-            throw new BasketIdInvalidFormatException();
-        }
+        basketId = Guid.NewGuid();
+
+        _httpContext.Response.Cookies.Append("basketId", basketId.ToString());
 
         return basketId;
     }
