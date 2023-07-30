@@ -1,4 +1,5 @@
-﻿using Smakownia.Basket.Domain.Snapshots;
+﻿using Smakownia.Basket.Domain.Exceptions;
+using Smakownia.Basket.Domain.Snapshots;
 
 namespace Smakownia.Basket.Domain.Entities;
 
@@ -17,7 +18,7 @@ public class BasketEntity
 
     public void AddItem(Guid id, int quantity)
     {
-        var existingItem = GetItemById(id);
+        var existingItem = GetItemByIdOrDefault(id);
 
         if (existingItem is not null)
         {
@@ -30,25 +31,29 @@ public class BasketEntity
 
     public void UpdateItem(Guid id, int quantity)
     {
-        var item = GetItemById(id);
-
-        if (item is null) return;
-
-        item.SetQuantity(quantity);
+        GetItemById(id).SetQuantity(quantity);
     }
 
     public void RemoveItem(Guid id)
     {
-        var item = GetItemById(id);
-
-        if (item is null) return;
-
-        _items.Remove(item);
+        _items.Remove(GetItemById(id));
     }
 
-    private BasketItem? GetItemById(Guid id)
+    private BasketItem? GetItemByIdOrDefault(Guid id)
     {
         return _items.Where(i => i.Id == id).FirstOrDefault();
+    }
+
+    private BasketItem GetItemById(Guid id)
+    {
+        var item = GetItemByIdOrDefault(id);
+
+        if (item is null)
+        {
+            throw new BasketItemNotFoundException(id);
+        }
+
+        return item;
     }
 
     public static BasketEntity Restore(BasketEntitySnapshot snapshot)
