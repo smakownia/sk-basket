@@ -29,7 +29,6 @@ public class GlobalExceptionMiddleware
     {
         var statusCode = exception switch
         {
-            BadRequestException => HttpStatusCode.BadRequest,
             NotFoundException => HttpStatusCode.NotFound,
             _ => HttpStatusCode.InternalServerError
         };
