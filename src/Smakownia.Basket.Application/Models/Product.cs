@@ -1,10 +1,9 @@
-﻿namespace Smakownia.Basket.Domain.Snapshots;
+﻿namespace Smakownia.Basket.Application.Models;
 
-public class BasketItemSnapshot
+public class Product
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public long Price { get; set; }
-    public int Quantity { get; set; }
 }
