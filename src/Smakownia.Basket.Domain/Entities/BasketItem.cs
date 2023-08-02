@@ -18,7 +18,6 @@ public class BasketItem
     public string Description { get; private set; }
     public long Price { get; private set; }
     public int Quantity { get; private set; }
-    public long TotalPrice => Quantity * Price;
 
     internal void SetQuantity(int quantity)
     {

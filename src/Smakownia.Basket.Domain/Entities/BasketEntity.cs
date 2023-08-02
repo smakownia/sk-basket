@@ -15,7 +15,6 @@ public class BasketEntity
 
     public Guid Id { get; private set; }
     public IReadOnlyCollection<BasketItem> Items => _items;
-    public long TotalPrice => _items.Aggregate(0L, (total, i) => total + i.TotalPrice);
 
     public void AddItem(Guid id, string name, string description, long price, int quantity)
     {
