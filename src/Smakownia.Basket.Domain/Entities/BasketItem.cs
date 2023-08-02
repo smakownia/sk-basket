@@ -4,14 +4,21 @@ namespace Smakownia.Basket.Domain.Entities;
 
 public class BasketItem
 {
-    internal BasketItem(Guid id, int quantity)
+    internal BasketItem(Guid id, string name, string description, long price, int quantity)
     {
         Id = id;
+        Name = name;
+        Description = description;
+        Price = price;
         Quantity = quantity;
     }
 
     public Guid Id { get; private set; }
+    public string Name { get; private set; }
+    public string Description { get; private set; }
+    public long Price { get; private set; }
     public int Quantity { get; private set; }
+    public long TotalPrice => Quantity * Price;
 
     internal void SetQuantity(int quantity)
     {
@@ -28,6 +35,9 @@ public class BasketItem
         return new()
         {
             Id = Id,
+            Name = Name,
+            Description = Description,
+            Price = Price,
             Quantity = Quantity
         };
     }

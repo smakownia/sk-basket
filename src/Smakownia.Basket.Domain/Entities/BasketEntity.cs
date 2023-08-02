@@ -15,8 +15,9 @@ public class BasketEntity
 
     public Guid Id { get; private set; }
     public IReadOnlyCollection<BasketItem> Items => _items;
+    public long TotalPrice => _items.Aggregate(0L, (total, i) => total + i.TotalPrice);
 
-    public void AddItem(Guid id, int quantity)
+    public void AddItem(Guid id, string name, string description, long price, int quantity)
     {
         var existingItem = GetItemByIdOrDefault(id);
 
@@ -26,7 +27,7 @@ public class BasketEntity
             return;
         }
 
-        _items.Add(new(id, quantity));
+        _items.Add(new(id, name, description, price, quantity));
     }
 
     public void UpdateItem(Guid id, int quantity)
@@ -62,7 +63,7 @@ public class BasketEntity
 
         foreach (var item in snapshot.Items)
         {
-            basket.AddItem(item.Id, item.Quantity);
+            basket.AddItem(item.Id, item.Name, item.Description, item.Price, item.Quantity);
         }
 
         return basket;
