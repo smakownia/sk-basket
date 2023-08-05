@@ -21,7 +21,13 @@ public class BasketIdentityService : IBasketIdentityService
 
         basketId = Guid.NewGuid();
 
-        _httpContext.Response.Cookies.Append("basketId", basketId.ToString());
+        _httpContext.Response.Cookies.Append("basketId",
+                                             basketId.ToString(),
+                                             new CookieOptions
+                                             {
+                                                 Expires = DateTime.Now.AddYears(1),
+                                                 HttpOnly = true,
+                                             });
 
         return basketId;
     }
