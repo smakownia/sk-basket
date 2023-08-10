@@ -32,7 +32,7 @@ public class AddBasketItemCommandHandler : IRequestHandler<AddBasketItemCommand,
         var basketId = _basketIdentityService.GetId();
         var basket = await _basketsRepository.GetAsync(basketId, cancellationToken);
 
-        basket.AddItem(product.Id, product.Name, product.Description, product.Price, request.Quantity);
+        basket.AddItem(product.Id, product.ImageUrl, product.Name, product.Description, product.Price.Raw, request.Quantity);
 
         await _basketsRepository.SetAsync(basket, cancellationToken);
 
