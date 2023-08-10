@@ -19,6 +19,6 @@ public class BasketMapperProfile : Profile
                        opt => opt.MapFrom(src => src.Price * src.Quantity));
 
         CreateMap<long, PriceDto>()
-            .ConvertUsing(f => new() { Raw = f, Formatted = (f / 100).ToString("0.00") + "zł" });
+            .ConvertUsing(f => new() { Raw = f, Formatted = decimal.Divide(f, 100).ToString("0.00") + "zł" });
     }
 }
