@@ -24,11 +24,11 @@ public class AddBasketItemCommandHandler : IRequestHandler<AddBasketItemCommand,
     public async Task<BasketDto> Handle(AddBasketItemCommand request, CancellationToken cancellationToken)
     {
         var basketId = _basketIdentityService.GetId();
-        var basket = await _basketsRepository.GetAsync(basketId, cancellationToken);
+        var basket = await _basketsRepository.GetAsync(basketId);
 
         basket.AddItem(request.Id, request.ImageUrl, request.Name, request.Description, request.Price, request.Quantity);
 
-        await _basketsRepository.SetAsync(basket, cancellationToken);
+        await _basketsRepository.SetAsync(basket);
 
         return _mapper.Map<BasketDto>(basket);
     }

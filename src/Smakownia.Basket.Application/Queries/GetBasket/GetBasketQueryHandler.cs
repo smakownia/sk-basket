@@ -25,7 +25,7 @@ public class GetBasketQueryHandler : IRequestHandler<GetBasketQuery, BasketDto>
     {
         var basketId = _basketIdentityService.GetId();
 
-        var basket = await _basketsRepository.GetAsync(basketId, cancellationToken);
+        var basket = await _basketsRepository.GetAsync(basketId);
 
         return _mapper.Map<BasketDto>(basket);
     }

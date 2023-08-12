@@ -29,7 +29,7 @@ public class BasketEntity
         _items.Add(new(id, imageUrl, name, description, price, quantity));
     }
 
-    public void UpdateItem(Guid id, int quantity)
+    public void UpdateItemQuantity(Guid id, int quantity)
     {
         GetItemById(id).SetQuantity(quantity);
     }
@@ -37,6 +37,16 @@ public class BasketEntity
     public void RemoveItem(Guid id)
     {
         _items.Remove(GetItemById(id));
+    }
+
+    public void RemoveItemOrDefault(Guid id)
+    {
+        var item = GetItemByIdOrDefault(id);
+
+        if (item is not null)
+        {
+            _items.Remove(item);
+        }
     }
 
     private BasketItem? GetItemByIdOrDefault(Guid id)

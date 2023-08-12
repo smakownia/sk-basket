@@ -1,21 +1,15 @@
 using Smakownia.Api.Middlewares;
 using Smakownia.Basket.Api.Services;
-using Smakownia.Basket.Application;
 using Smakownia.Basket.Application.Services;
-using Smakownia.Basket.Domain.Repositories;
-using Smakownia.Basket.Infrastructure.Repositories;
+using Smakownia.Products.Application;
+using Smakownia.Products.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Smakownia.Basket.Application.AssemblyReference.Assembly));
-builder.Services.AddStackExchangeRedisCache(options =>
-{
-    options.Configuration = builder.Configuration.GetConnectionString("Redis");
-    options.InstanceName = "Basket";
-});
-builder.Services.AddAutoMapper(typeof(BasketMapperProfile));
+builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices(builder.Configuration);
+
 builder.Services.AddTransient<IBasketIdentityService, BasketIdentityService>();
-builder.Services.AddTransient<IBasketsRepository, BasketsRepository>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

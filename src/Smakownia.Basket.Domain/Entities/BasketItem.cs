@@ -21,14 +21,14 @@ public class BasketItem
     public long Price { get; private set; }
     public int Quantity { get; private set; }
 
-    internal void SetQuantity(int quantity)
-    {
-        Quantity = quantity;
-    }
-
     internal void AddQuantity(int quantity)
     {
         Quantity += quantity;
+    }
+
+    internal void SetQuantity(int quantity)
+    {
+        Quantity = quantity;
     }
 
     public BasketItemSnapshot ToSnapshot()
