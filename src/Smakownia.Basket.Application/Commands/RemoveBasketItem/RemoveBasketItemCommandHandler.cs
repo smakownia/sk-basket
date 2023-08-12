@@ -24,11 +24,11 @@ public class RemoveBasketItemCommandHandler : IRequestHandler<RemoveBasketItemCo
     public async Task<BasketDto> Handle(RemoveBasketItemCommand request, CancellationToken cancellationToken)
     {
         var basketId = _basketIdentityService.GetId();
-        var basket = await _basketsRepository.GetAsync(basketId, cancellationToken);
+        var basket = await _basketsRepository.GetAsync(basketId);
 
         basket.RemoveItem(request.Id);
 
-        await _basketsRepository.SetAsync(basket, cancellationToken);
+        await _basketsRepository.SetAsync(basket);
 
         return _mapper.Map<BasketDto>(basket);
     }

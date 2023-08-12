@@ -4,6 +4,7 @@ namespace Smakownia.Basket.Domain.Repositories;
 
 public interface IBasketsRepository
 {
-    Task<BasketEntity> GetAsync(Guid key, CancellationToken cancellationToken);
-    Task<BasketEntity> SetAsync(BasketEntity basket, CancellationToken cancellationToken);
+    IEnumerable<Guid> GetKeys();
+    Task<BasketEntity> GetAsync(Guid key);
+    Task<BasketEntity> SetAsync(BasketEntity basket);
 }
