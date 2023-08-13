@@ -1,9 +1,9 @@
 ﻿using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Smakownia.Basket.Application.Consumers;
 using Smakownia.Basket.Domain.Repositories;
 using Smakownia.Basket.Infrastructure.Repositories;
-using Smakownia.Events;
 using StackExchange.Redis;
 
 namespace Smakownia.Products.Infrastructure;

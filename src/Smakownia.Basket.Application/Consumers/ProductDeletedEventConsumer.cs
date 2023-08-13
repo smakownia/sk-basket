@@ -1,9 +1,10 @@
 ﻿using MassTransit;
 using Smakownia.Basket.Domain.Repositories;
+using Smakownia.Events;
 
-namespace Smakownia.Events;
+namespace Smakownia.Basket.Application.Consumers;
 
-public class ProductDeletedEventConsumer : IConsumer<ProductDeletedEvent>
+public class ProductDeletedEventConsumer : IConsumer<ProductDeleted>
 {
     private readonly IBasketsRepository _basketsRepository;
 
@@ -12,10 +13,8 @@ public class ProductDeletedEventConsumer : IConsumer<ProductDeletedEvent>
         _basketsRepository = basketsRepository;
     }
 
-    public async Task Consume(ConsumeContext<ProductDeletedEvent> context)
+    public async Task Consume(ConsumeContext<ProductDeleted> context)
     {
-        Console.Write("ergvbstreiogbjtrogbvnjosrtibnjornftgbhoirfdtgbhodnrftbho njdfgobhnodfignhbotgnodpfhbnsduiopfgbhvtdnuiobvndftuiogvbhnio");
-
         var keys = _basketsRepository.GetKeys();
 
         foreach (var key in keys)
