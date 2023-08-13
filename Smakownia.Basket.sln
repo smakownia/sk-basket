@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smakownia.Basket.Infrastruc
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{329E0DBB-C7A7-40E7-9A9D-02AE35BDE8B0}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smakownia.Events", "modules\Smakownia.Events\Smakownia.Events\Smakownia.Events.csproj", "{0447AD11-8C3E-46BA-9939-BB03BBA3E08B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{90013E6C-FF7F-47F9-9462-E6B56532DA7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,10 @@ Global
 		{329E0DBB-C7A7-40E7-9A9D-02AE35BDE8B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{329E0DBB-C7A7-40E7-9A9D-02AE35BDE8B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{329E0DBB-C7A7-40E7-9A9D-02AE35BDE8B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0447AD11-8C3E-46BA-9939-BB03BBA3E08B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0447AD11-8C3E-46BA-9939-BB03BBA3E08B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0447AD11-8C3E-46BA-9939-BB03BBA3E08B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0447AD11-8C3E-46BA-9939-BB03BBA3E08B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +58,7 @@ Global
 		{4639B20D-39E8-4416-902F-C90BF5081C74} = {D2F378A1-74E2-4957-AB8E-8F692C63EE51}
 		{D970189B-DD6D-4177-9392-ABE3F7729AA0} = {D2F378A1-74E2-4957-AB8E-8F692C63EE51}
 		{FB44C1FE-C6ED-417C-AC4F-0B32F8EF4FD5} = {D2F378A1-74E2-4957-AB8E-8F692C63EE51}
+		{0447AD11-8C3E-46BA-9939-BB03BBA3E08B} = {90013E6C-FF7F-47F9-9462-E6B56532DA7D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38ADE045-2DC3-45C5-99AF-6C6976F59385}
