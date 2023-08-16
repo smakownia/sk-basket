@@ -1,0 +1,3 @@
+[submodule "modules/Smakownia.Events"]
+	path = modules/Smakownia.Events
+	url = https://github.com/smakownia/sk-events.git

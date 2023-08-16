@@ -1,1 +1,3 @@
-# sk-basket
+# Smakownia
+
+https://github.com/smakownia/smakownia
