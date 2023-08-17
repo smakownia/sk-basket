@@ -1,9 +1,9 @@
 name: Deploy
 
 on: 
-  push:
+  pull_request:
     branches:
-      - feature/42-add-cd
+      - main
 
 jobs:
   build:
@@ -29,9 +29,9 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        USERNAME: ${{ secrets.USERNAME }}
-        PORT: ${{ secrets.PORT }}
-        KEY: ${{ secrets.SSHKEY }}
+        username: ${{ secrets.USERNAME }}
+        port: ${{ secrets.PORT }}
+        key: ${{ secrets.SSHKEY }}
         script: |
           cd sk-basket
           docker-compose -f docker-compose.yml up -d --build
