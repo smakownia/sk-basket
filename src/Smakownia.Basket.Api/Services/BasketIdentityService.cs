@@ -16,8 +16,10 @@ public class BasketIdentityService : IBasketIdentityService
 
     public Guid GetId()
     {
+        return Guid.NewGuid();
+
         var identityId = _identityService.GetIdOrDefault();
-        Console.WriteLine($"///////////////////////// {identityId}");
+
         if (identityId is not null)
         {
             return identityId.Value;
