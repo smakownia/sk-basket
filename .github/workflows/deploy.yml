@@ -32,4 +32,4 @@ jobs:
         KEY: ${{ secrets.SSHKEY }}
         script: |
           cd sk-basket
-          docker-compose up -f docker-compose.yml -d --build
+          docker-compose -f docker-compose.yml up -d --build
