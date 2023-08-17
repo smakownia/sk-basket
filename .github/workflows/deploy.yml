@@ -1,7 +1,9 @@
 name: Deploy
 
-branches: *
-on: [push]
+on: 
+  push:
+    branches:
+      - *
 
 jobs:
   build:
